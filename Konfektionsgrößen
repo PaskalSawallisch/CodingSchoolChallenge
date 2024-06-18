@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Konfektionsgroesse {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Bitte geben Sie den Brustumfang in cm ein: ");
+        if (scanner.hasNextInt()) {
+            int brustumfang = scanner.nextInt();
+
+            System.out.print("Bitte geben Sie die Körpergröße in cm ein: ");
+            if (scanner.hasNextInt()) {
+                int koerpergroesse = scanner.nextInt();
+
+                System.out.print("Bitte geben Sie das Geschlecht ein (0 = Mann, 1 = Frau): ");
+                if (scanner.hasNextInt()) {
+                    int geschlecht = scanner.nextInt();
+
+                    int konfektionsgroesse = berechneKonfektionsgroesse(brustumfang, koerpergroesse, geschlecht);
+
+                    System.out.println("Die berechnete Konfektionsgröße ist: " + konfektionsgroesse);
+                } else {
+                    System.out.println("Ungültige Eingabe für das Geschlecht.");
+                }
+            } else {
+                System.out.println("Ungültige Eingabe für die Körpergröße.");
+            }
+        } else {
+            System.out.println("Ungültige Eingabe für den Brustumfang.");
+        }
+    }
+
+    public static int berechneKonfektionsgroesse(int brustumfang, int koerpergroesse, int geschlecht) {
+        int konfektionsgroesse = brustumfang / 2;
+
+        if (geschlecht == 1) {
+            konfektionsgroesse -= 6;
+
+            if (koerpergroesse < 164) {
+                konfektionsgroesse = konfektionsgroesse / 2;
+            } else if (koerpergroesse > 170) {
+                konfektionsgroesse = konfektionsgroesse * 2;
+            }
+        }
+
+        return konfektionsgroesse;
+    }
+}
