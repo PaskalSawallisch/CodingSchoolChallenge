@@ -4,15 +4,15 @@ public class Konfektionsgroesse {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Bitte geben Sie den Brustumfang in cm ein: ");
+        System.out.print("Brustumfang in cm: ");
         if (scanner.hasNextInt()) {
             int brustumfang = scanner.nextInt();
 
-            System.out.print("Bitte geben Sie die Körpergröße in cm ein: ");
+            System.out.print("Körpergröße in cm: ");
             if (scanner.hasNextInt()) {
                 int koerpergroesse = scanner.nextInt();
 
-                System.out.print("Bitte geben Sie das Geschlecht ein (0 = Mann, 1 = Frau): ");
+                System.out.print("Das Geschlecht (0 = Mann, 1 = Frau): ");
                 if (scanner.hasNextInt()) {
                     int geschlecht = scanner.nextInt();
 

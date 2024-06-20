@@ -1,0 +1,73 @@
+public class Time {
+    private int totalSeconds;
+
+
+    public Time() {
+        this.totalSeconds = 0;
+    }
+
+    public Time(int hours, int minutes, int seconds) {
+        this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    }
+
+    
+    public int getHours() {
+        return totalSeconds / 3600;
+    }
+
+   
+    public int getMinutes() {
+        return (totalSeconds % 3600) / 60;
+    }
+
+    
+    public int getSeconds() {
+        return totalSeconds % 60;
+    }
+
+   
+    public void setHours(int hours) {
+        int minutes = getMinutes();
+        int seconds = getSeconds();
+        this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    }
+
+    public void setMinutes(int minutes) {
+        int hours = getHours();
+        int seconds = getSeconds();
+        this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    }
+
+    public void setSeconds(int seconds) {
+        int hours = getHours();
+        int minutes = getMinutes();
+        this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    }
+
+    
+    public void addSeconds(int seconds) {
+        this.totalSeconds += seconds;
+    }
+
+    
+    public Time subtract(Time other) {
+        int resultSeconds = this.totalSeconds - other.totalSeconds;
+        if (resultSeconds < 0) {
+            resultSeconds += 24 * 3600; 
+        }
+        return new Time(0, 0, resultSeconds);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%02d:%02d:%02d", getHours(), getMinutes(), getSeconds());
+    }
+
+    public static void main(String[] args) {
+        Time t1 = new Time();
+        Time t2 = new Time(3, 20, 45);
+        Time t3 = new Time(1, 20, 45);
+        Time subtract = t2.subtract(t3);
+        System.out.println(subtract.toString()); 
+    }
+}

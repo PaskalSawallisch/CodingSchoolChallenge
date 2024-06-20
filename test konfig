@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+// Der "import"-Befehl holt die Klasse Scanner aus dem Paket java.util, damit wir sie verwenden können.
+
+public class Konfektionsgroesse {
+    // Dies definiert die öffentliche Klasse Konfektionsgroesse.
+
+    public static void main(String[] args) {
+        // Dies ist die Hauptmethode und der Einstiegspunkt des Programms.
+
+        Scanner scanner = new Scanner(System.in);
+        // Erstellen eines Scanner-Objekts, um Eingaben von der Konsole zu lesen.
+        // "scanner" ist eine Variable, die auf das Scanner-Objekt verweist.
+
+        System.out.print("Bitte geben Sie den Brustumfang in cm ein: ");
+        // Aufforderung an den Benutzer, den Brustumfang einzugeben.
+        if (scanner.hasNextInt()) {
+            int brustumfang = scanner.nextInt();
+            // Liest die nächste Ganzzahl (int) von der Konsole und speichert sie in der Variable "brustumfang".
+
+            System.out.print("Bitte geben Sie die Körpergröße in cm ein: ");
+            // Aufforderung an den Benutzer, die Körpergröße einzugeben.
+            if (scanner.hasNextInt()) {
+                int koerpergroesse = scanner.nextInt();
+                // Liest die nächste Ganzzahl (int) von der Konsole und speichert sie in der Variable "koerpergroesse".
+
+                System.out.print("Bitte geben Sie das Geschlecht ein (0 = Mann, 1 = Frau): ");
+                // Aufforderung an den Benutzer, das Geschlecht einzugeben.
+                if (scanner.hasNextInt()) {
+                    int geschlecht = scanner.nextInt();
+                    // Liest die nächste Ganzzahl (int) von der Konsole und speichert sie in der Variable "geschlecht".
+
+                    int konfektionsgroesse = berechneKonfektionsgroesse(brustumfang, koerpergroesse, geschlecht);
+                    // Ruft die Methode berechneKonfektionsgroesse auf und übergibt die eingegebenen Werte.
+                    // Speichert das Ergebnis in der Variablen "konfektionsgroesse".
+
+                    System.out.println("Die berechnete Konfektionsgröße ist: " + konfektionsgroesse);
+                    // Gibt die berechnete Konfektionsgröße auf der Konsole aus.
+                } else {
+                    System.out.println("Ungültige Eingabe für das Geschlecht.");
+                }
+            } else {
+                System.out.println("Ungültige Eingabe für die Körpergröße.");
+            }
+        } else {
+            System.out.println("Ungültige Eingabe für den Brustumfang.");
+        }
+    }
+
+    public static int berechneKonfektionsgroesse(int brustumfang, int koerpergroesse, int geschlecht) {
+        // Dies definiert die Methode berechneKonfektionsgroesse.
+        // Sie ist öffentlich (public) und kann ohne eine Instanz der Klasse aufgerufen werden (static).
+        // Sie gibt einen int-Wert zurück (die berechnete Konfektionsgröße).
+        // Sie nimmt drei Parameter entgegen: brustumfang, koerpergroesse und geschlecht.
+
+        int konfektionsgroesse = brustumfang / 2;
+        // Berechnet die Grundkonfektionsgröße, indem der Brustumfang durch 2 geteilt wird.
+        // Speichert das Ergebnis in der Variablen "konfektionsgroesse".
+
+        if (geschlecht == 1) {
+            // Überprüft, ob das Geschlecht weiblich ist (1 steht für Frau).
+
+            konfektionsgroesse -= 6;
+            // Verringert die Konfektionsgröße um 6 für Frauen.
+
+            if (koerpergroesse < 164) {
+                // Überprüft, ob die Körpergröße kleiner als 164 cm ist.
+                konfektionsgroesse = konfektionsgroesse / 2;
+                // Halbiert die Konfektionsgröße für kleine Frauen.
+            } else if (koerpergroesse > 170) {
+                // Überprüft, ob die Körpergröße größer als 170 cm ist.
+                konfektionsgroesse = konfektionsgroesse * 2;
+                // Verdoppelt die Konfektionsgröße für große Frauen.
+            }
+            // Wenn die Körpergröße zwischen 164 cm und 170 cm liegt, bleibt die Konfektionsgröße unverändert.
+        }
+
+        return konfektionsgroesse;
+        // Gibt die berechnete Konfektionsgröße zurück.

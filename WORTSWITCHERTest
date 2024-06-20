@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class StringUmkehren {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Benutzer zur Eingabe eines Strings auffordern
+        System.out.print("Bitte geben Sie einen String ein: ");
+        String input = scanner.nextLine();
+        
+        // Umgekehrten String berechnen
+        String reversed = reverseString(input);
+        
+        // Umgekehrten String ausgeben
+        System.out.println("Der umgekehrte String ist: " + reversed);
+    }
+
+    // Methode, die einen String in umgekehrter Reihenfolge zurückgibt
+    public static String reverseString(String str) {
+        // StringBuilder für effizientes String-Manipulation verwenden
+        StringBuilder reversed = new StringBuilder();
+        
+        // Von hinten nach vorne durch den String iterieren
+        for (int i = str.length() - 1; i >= 0; i--) {
+            // Zeichen an der aktuellen Position hinzufügen
+            reversed.append(str.charAt(i));
+        }
+        
+        // Ergebnis als String zurückgeben
+        return reversed.toString();
+    }
+}
