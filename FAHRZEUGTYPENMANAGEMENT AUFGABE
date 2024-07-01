@@ -1,0 +1,159 @@
+//Fahrzeugklassen
+
+
+public class Main {
+
+public interface Vehicle {
+    void accelerate();
+    void brake();
+    int countOfWheels();
+    int getCurrentSpeed();
+    double calculateDistance(double hours);
+}
+
+
+
+
+public abstract class AbstractVehicle implements Vehicle {
+    public int currentSpeed;
+
+    public int getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    public void brake() {
+        if (currentSpeed > 0) {
+            currentSpeed -= 5; 
+        }
+    }
+
+    public double calculateDistance(double hours) {
+        
+        return currentSpeed * hours;
+    }
+}
+
+
+public class Car extends AbstractVehicle {
+    private static final int ACCELERATION_RATE = 20; 
+    public Car() {
+        this.currentSpeed = 0;
+    }
+
+    @Override
+    public void accelerate() {
+        currentSpeed += ACCELERATION_RATE;
+    }
+
+    @Override
+    public int countOfWheels() {
+        return 4;
+    }
+}
+
+
+public class Bicycle extends AbstractVehicle {
+    private static final int ACCELERATION_RATE = 5; 
+
+    public Bicycle() {
+        this.currentSpeed = 0;
+    }
+
+    @Override
+    public void accelerate() {
+        currentSpeed += ACCELERATION_RATE;
+    }
+
+    @Override
+    public int countOfWheels() {
+        return 2;
+    }
+}
+
+
+public class Truck extends AbstractVehicle {
+    private static final int ACCELERATION_RATE = 15; 
+
+    public Truck() {
+        this.currentSpeed = 0;
+    }
+
+    @Override
+    public void accelerate() {
+        currentSpeed += ACCELERATION_RATE;
+    }
+
+    @Override
+    public int countOfWheels() {
+        return 6;
+    }
+}
+
+
+public class Airplane extends AbstractVehicle {
+    private static final int ACCELERATION_RATE = 50; 
+
+    public Airplane() {
+        this.currentSpeed = 0;
+    }
+
+    @Override
+    public void accelerate() {
+        currentSpeed += ACCELERATION_RATE;
+    }
+
+    @Override
+    public int countOfWheels() {
+        return 16; 
+    }
+}
+
+
+public class Carriage extends AbstractVehicle {
+    private static final int ACCELERATION_RATE = 10; 
+
+    public Carriage() {
+        this.currentSpeed = 0;
+    }
+
+    @Override
+    public void accelerate() {
+        currentSpeed += ACCELERATION_RATE;
+    }
+
+    @Override
+    public int countOfWheels() {
+        return 4; 
+    }
+}
+
+
+
+    public static void main(String[] args) {
+	Main main = new Main();
+        Car myCar = main.new Car();
+        Bicycle myBicycle = main.new Bicycle();
+        Truck myTruck = main.new Truck();
+        Airplane myAirplane = main.new Airplane();
+        Carriage myCarriage = main.new Carriage();
+
+
+        myCar.accelerate();
+        myBicycle.accelerate();
+        myTruck.accelerate();
+        myAirplane.accelerate();
+        myCarriage.accelerate();
+
+        System.out.println("Auto - Aktuelle Geschwindigkeit: " + myCar.getCurrentSpeed() + " km/h, Anzahl der Räder: " + myCar.countOfWheels());
+        System.out.println("Fahrrad - Aktuelle Geschwindigkeit: " + myBicycle.getCurrentSpeed() + " km/h, Anzahl der Räder: " + myBicycle.countOfWheels());
+        System.out.println("LKW - Aktuelle Geschwindigkeit: " + myTruck.getCurrentSpeed() + " km/h, Anzahl der Räder: " + myTruck.countOfWheels());
+        System.out.println("Flugzeug - Aktuelle Geschwindigkeit: " + myAirplane.getCurrentSpeed() + " km/h, Anzahl der Räder: " + myAirplane.countOfWheels());
+        System.out.println("Kutsche - Aktuelle Geschwindigkeit: " + myCarriage.getCurrentSpeed() + " km/h, Anzahl der Räder: " + myCarriage.countOfWheels());
+
+        double timeInHours = 2;
+        System.out.println("Auto - Zurückgelegte Strecke in 2 Stunden: " + myCar.calculateDistance(timeInHours) + " km");
+        System.out.println("Fahrrad - Zurückgelegte Strecke in 2 Stunden: " + myBicycle.calculateDistance(timeInHours) + " km");
+        System.out.println("LKW - Zurückgelegte Strecke in 2 Stunden: " + myTruck.calculateDistance(timeInHours) + " km");
+        System.out.println("Flugzeug - Zurückgelegte Strecke in 2 Stunden: " + myAirplane.calculateDistance(timeInHours) + " km");
+        System.out.println("Kutsche - Zurückgelegte Strecke in 2 Stunden: " + myCarriage.calculateDistance(timeInHours) + " km");
+    }
